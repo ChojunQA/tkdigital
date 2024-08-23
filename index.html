@@ -33,29 +33,27 @@
         /* Estilo para el encabezado */
         header {
             text-align: center; /* Centra el texto en el encabezado */
-            padding: 20px; /* Espacio alrededor del encabezado */
+            padding: 20px 0; /* Espacio arriba y abajo en el encabezado */
             background: linear-gradient(90deg, #ff0000, #ff7f00, #ffcc00); /* Gradiente de colores para el fondo del encabezado */
             color: #111; /* Color del texto en el encabezado */
             position: relative; /* Necesario para posicionar el logo absoluto */
-            overflow: hidden; /* Oculta cualquier contenido desbordado */
         }
 
         /* Estilo para el título en el encabezado */
         header h1 {
-            font-size: 1.5rem; /* Tamaño del título */
+            font-size: 2rem; /* Tamaño grande para el título */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto para mejor legibilidad */
-            margin: 0; /* Elimina margen */
+            margin: 0; /* Elimina el margen por defecto del h1 */
         }
 
         /* Estilo para el logo en el encabezado */
         header .logo {
             position: absolute; /* Posiciona el logo en relación con el encabezado */
             top: 50%; /* Centra verticalmente */
-            left: 50%; /* Centra horizontalmente */
-            transform: translate(-50%, -50%); /* Ajusta el logo para que quede centrado vertical y horizontalmente */
-            height: 10vw; /* Ajusta la altura del logo en proporción al ancho de la ventana */
-            max-width: 150px; /* Limita el ancho máximo del logo */
-            max-height: 100px; /* Limita la altura máxima del logo */
+            left: 10px; /* Posiciona el logo a la izquierda */
+            transform: translateY(-50%); /* Ajusta el logo para que quede centrado verticalmente */
+            height: 80px; /* Ajusta la altura del logo */
+            max-width: 100%; /* Hace que el logo sea responsivo */
         }
 
         /* Estilo para el contenedor de las secciones */
@@ -101,26 +99,15 @@
             display: none; /* Oculta elementos con esta clase */
         }
 
-        /* Media Queries para ajustar el título y el logo en pantallas más pequeñas */
+        /* Estilo para el encabezado en dispositivos móviles */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.2rem; /* Reduce el tamaño del título */
-            }
-
             header .logo {
-                height: 12vw; /* Ajusta la altura del logo para pantallas más pequeñas */
-                max-width: 120px; /* Limita el ancho máximo del logo */
+                left: 50%; /* Centra horizontalmente el logo en pantallas pequeñas */
+                transform: translate(-50%, -50%); /* Ajusta la posición para centrar el logo verticalmente */
             }
-        }
 
-        @media (max-width: 576px) {
             header h1 {
-                font-size: 1rem; /* Reduce aún más el tamaño del título */
-            }
-
-            header .logo {
-                height: 15vw; /* Ajusta aún más la altura del logo */
-                max-width: 100px; /* Limita el ancho máximo del logo */
+                display: none; /* Oculta el título en pantallas pequeñas */
             }
         }
     </style>
@@ -180,38 +167,36 @@
             <h2 class="section-title">Bienvenido a Taekwondo Digital</h2>
             <p>Explora nuestra plataforma para mejorar tus conocimientos en Taekwondo.</p>
             <!-- Imagen en la sección de inicio -->
-            <img src="home.jpg" alt="Imagen de inicio" class="img-fluid"> <!-- Asegúrate de reemplazar "home.jpg" con la URL correcta de tu imagen -->
+            <img src="home.jpg" alt="Imagen de inicio" class="img-fluid"> <!-- Asegúrate de reemplazar "home-image.jpg" con la URL correcta de tu imagen -->
         </section>
 
         <!-- Sección de teoría en audio -->
         <section id="teoria-en-audio" class="hidden">
             <h2 class="section-title">Teoría en Audio</h2>
             <p>Aquí puedes encontrar archivos PDF con la teoría en audio:</p>
-            <!-- iFrame para mostrar el contenido del archivo PDF -->
-            <iframe src="pdf/Enciclopedia.pdf" type="application/pdf"></iframe> <!-- Ruta al archivo PDF -->
+            <!-- iFrame para mostrar el contenido del archivo PDF desde una ruta local -->
+            <iframe src="pdf/Enciclopedia.pdf" type="application/pdf"></iframe> <!-- Ruta al archivo PDF local -->
         </section>
     </div>
 
     <!-- Pie de página -->
     <footer>
-        <p>&copy; 2024 Taekwondo Digital. Todos los derechos reservados.</p>
+        <p>&copy; 2024 Taekwondo Digital. Todos los derechos reservados. Propiedad de la escuela Chul Hak San</p>
     </footer>
 
-    <!-- Scripts de Bootstrap para funcionalidades interactivas -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
+    <!-- Script para los componentes de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Función para mostrar y ocultar secciones
-        function showSection(id) {
-            document.querySelectorAll('.container > section').forEach(section => {
-                section.classList.add('hidden'); // Oculta todas las secciones
-            });
-            document.getElementById(id).classList.remove('hidden'); // Muestra la sección seleccionada
-        }
+        // Función para mostrar secciones específicas
+        function showSection(sectionId) {
+            // Oculta todas las secciones
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('teoria-en-audio').classList.add('hidden');
 
-        // Mostrar la sección de inicio por defecto
-        showSection('home');
+            // Muestra la sección seleccionada
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
     </script>
+
 </body>
 </html>
