@@ -33,7 +33,7 @@
         /* Estilo para el encabezado */
         header {
             text-align: center; /* Centra el texto en el encabezado */
-            padding: 20px 0; /* Espacio arriba y abajo en el encabezado */
+            padding: 20px 10px; /* Espacio arriba y abajo en el encabezado */
             background: linear-gradient(90deg, #ff0000, #ff7f00, #ffcc00); /* Gradiente de colores para el fondo del encabezado */
             color: #111; /* Color del texto en el encabezado */
             position: relative; /* Necesario para posicionar el logo absoluto */
@@ -41,7 +41,7 @@
 
         /* Estilo para el título en el encabezado */
         header h1 {
-            font-size: 2rem; /* Tamaño grande para el título */
+            font-size: 1.5rem; /* Tamaño grande para el título */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Sombra del texto para mejor legibilidad */
         }
 
@@ -51,8 +51,9 @@
             top: 50%; /* Centra verticalmente */
             left: 10px; /* Posiciona el logo a la izquierda */
             transform: translateY(-50%); /* Ajusta el logo para que quede centrado verticalmente */
-            height: 100px; /* Ajusta la altura del logo */
+            height: 15vw; /* Ajusta la altura del logo en proporción al ancho de la ventana */
             max-width: 100%; /* Hace que el logo sea responsivo */
+            max-height: 100px; /* Limita la altura máxima del logo */
         }
 
         /* Estilo para el contenedor de las secciones */
@@ -96,6 +97,27 @@
         /* Estilo para ocultar secciones */
         .hidden {
             display: none; /* Oculta elementos con esta clase */
+        }
+
+        /* Media Queries para ajustar el título y el logo en pantallas más pequeñas */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.2rem; /* Reduce el tamaño del título */
+            }
+
+            header .logo {
+                height: 10vw; /* Ajusta la altura del logo para pantallas más pequeñas */
+            }
+        }
+
+        @media (max-width: 576px) {
+            header h1 {
+                font-size: 1rem; /* Reduce aún más el tamaño del título */
+            }
+
+            header .logo {
+                height: 8vw; /* Ajusta aún más la altura del logo */
+            }
         }
     </style>
     <!-- Script para el chatbox de Botsonic -->
@@ -154,7 +176,7 @@
             <h2 class="section-title">Bienvenido a Taekwondo Digital</h2>
             <p>Explora nuestra plataforma para mejorar tus conocimientos en Taekwondo.</p>
             <!-- Imagen en la sección de inicio -->
-            <img src="home.jpg" alt="Imagen de inicio" class="img-fluid"> <!-- Asegúrate de reemplazar "home-image.jpg" con la URL correcta de tu imagen -->
+            <img src="home.jpg" alt="Imagen de inicio" class="img-fluid"> <!-- Asegúrate de reemplazar "home.jpg" con la URL correcta de tu imagen -->
         </section>
 
         <!-- Sección de teoría en audio -->
@@ -168,22 +190,24 @@
 
     <!-- Pie de página -->
     <footer>
-        <p>&copy; 2024 Taekwondo Digital. Todos los derechos reservados. Propiedad de la escuela Chul Hak San</p>
+        <p>&copy; 2024 Taekwondo Digital. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script para los componentes de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts de Bootstrap para funcionalidades interactivas -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
     <script>
-        // Función para mostrar secciones específicas
-        function showSection(sectionId) {
-            // Oculta todas las secciones
-            document.getElementById('home').classList.add('hidden');
-            document.getElementById('teoria-en-audio').classList.add('hidden');
-
-            // Muestra la sección seleccionada
-            document.getElementById(sectionId).classList.remove('hidden');
+        // Función para mostrar y ocultar secciones
+        function showSection(id) {
+            document.querySelectorAll('.container > section').forEach(section => {
+                section.classList.add('hidden'); // Oculta todas las secciones
+            });
+            document.getElementById(id).classList.remove('hidden'); // Muestra la sección seleccionada
         }
-    </script>
 
+        // Mostrar la sección de inicio por defecto
+        showSection('home');
+    </script>
 </body>
 </html>
